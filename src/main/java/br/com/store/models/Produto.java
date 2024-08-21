@@ -3,12 +3,17 @@ package br.com.store.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_produto")
 @Data
 @EqualsAndHashCode(of = "id")
-public class Produto {
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +21,13 @@ public class Produto {
     private String name;
     private String description;
     private Double price;
+
+    @Getter
+    @ManyToMany
+    @JoinTable(name = "tb_produto_category",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public Produto(){
 
@@ -27,6 +39,5 @@ public class Produto {
         this.description = description;
         this.price = price;
     }
-
 
 }
