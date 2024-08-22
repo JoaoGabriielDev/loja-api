@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        Optional<User> obj = repository.findById(id);
     }
 
     public User update(Long id, User obj){
