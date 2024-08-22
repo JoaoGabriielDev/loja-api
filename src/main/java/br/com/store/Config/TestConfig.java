@@ -35,7 +35,7 @@ public class TestConfig implements CommandLineRunner {
         Category c1 = new Category(null, "Celulares");
         Category c2 = new Category(null, "Notebooks");
 
-        Produto p1 = new Produto(null, "Iphone16", "128GB - Tela de 6,06 polegadas.", 3000.00);
+        Produto p1 = new Produto(null, "Iphone16", "128GB - Tela de 6,07 polegadas.", 3000.00);
         Produto p2 = new Produto(null, "MacBook", "1TB - Tela de 16,2 polegadas.", 9000.00);
 
         p1.getCategories().add(c1);
