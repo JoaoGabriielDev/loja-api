@@ -4,6 +4,7 @@ import br.com.store.models.Category;
 import br.com.store.models.Order;
 import br.com.store.models.Produto;
 import br.com.store.models.User;
+import br.com.store.models.enums.OrderStatus;
 import br.com.store.respositories.CategoryRepository;
 import br.com.store.respositories.OrderRepository;
 import br.com.store.respositories.ProdutoRepository;
@@ -38,9 +39,9 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Tommy", "tommy@gmail.com", "83977778888", "12345678");
         User u2 = new User(null, "Joao", "joao@gmail.com", "83988887777", "12345678");
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Order o2 = new Order(null, Instant.parse("2014-03-10T08:30:00Z"), u2);
-        Order o3 = new Order(null, Instant.parse("2020-10-05T15:40:10Z"), u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2014-03-10T08:30:00Z"), OrderStatus.WAITING_PAYMENT , u2);
+        Order o3 = new Order(null, Instant.parse("2020-10-05T15:40:10Z"), OrderStatus.WAITING_PAYMENT , u1);
 
         Category c1 = new Category(null, "Notebooks");
         Category c2 = new Category(null, "Celulares");
