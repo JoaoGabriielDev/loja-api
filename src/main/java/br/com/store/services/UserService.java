@@ -1,5 +1,6 @@
 package br.com.store.services;
 
+import br.com.store.exceptions.UserNotFoundException;
 import br.com.store.models.User;
 import br.com.store.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User findById(Long id){
-        Optional<User> obj = repository.findById(id);
-        return obj.get();
+    public User findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuário com ID " + id + " não encontrado!"));
     }
 
     public User insert(User obj){
