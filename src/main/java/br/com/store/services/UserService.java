@@ -21,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuário com ID " + id + " não encontrado!"));
+                .orElseThrow(UserNotFoundException::new);
     }
 
     public User insert(User obj){
@@ -29,11 +29,12 @@ public class UserService {
     }
 
     public void delete(Long id){
-        Optional<User> obj = repository.findById(id);
+        User obj = repository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
     }
 
     public User update(Long id, User obj){
-        User entity = repository.getReferenceById(id);
+        User entity = repository.findById(id).orElseThrow(UserNotFoundException::new);
         updateData(entity, obj);
         return repository.save(entity);
     }

@@ -1,5 +1,6 @@
 package br.com.store.services;
 
+import br.com.store.exceptions.ProdutoNotFoundException;
 import br.com.store.models.Produto;
 import br.com.store.respositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,7 @@ public class ProdutoService {
     }
 
     public Produto findById(Long id){
-        Optional<Produto> list = repository.findById(id);
-        return list.get();
+        return repository.findById(id).orElseThrow(ProdutoNotFoundException::new);
     }
 
     public Produto insert(Produto obj){
